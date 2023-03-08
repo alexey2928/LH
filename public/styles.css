@@ -1,0 +1,45 @@
+#home {
+    height: 100vh;
+   background-image: url(./images/home-background.jpg);
+   background-size: cover;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+#services{
+    height: 100vh;
+    display: flex;
+    align-items:flex-start
+}
+#portfolio{
+    height: 100vh;
+    display: flex;
+   justify-content: center;
+   align-items: center;
+}
+
+#navbar {
+    z-index: 100;
+    position: fixed;
+    width: 100%;
+}
+
+#navbarNav{
+    justify-content: right;
+}
+
+#account{
+    justify-content: left;
+}
+#brand{
+    justify-content: center;
+}
+
+.card{
+    border: none;
+    /* background-color: antiquewhite; */
+}
+.header{
+    margin: 4rem;
+}
