@@ -27,6 +27,8 @@ function Login() {
 	  };
 
 	return (
+		<>
+		<h1>LOGIN</h1>
 		<form onSubmit={handleSubmit} name="login">
 			<div>
 				<label>Email:</label>
@@ -50,6 +52,7 @@ function Login() {
 			<button type="submit">Login</button>
 			{error && error.response && <div> {error.response.data} </div>}
 		</form>
+		</>
 	);
 }
 

@@ -27,6 +27,9 @@ const Main = () => {
 				<Routes>
 					<Route path="/login" element={<Navigate to="/dashboard"/>} />
 					<Route path="/register" element={<Navigate to="/dashboard"/>} />
+					<Route path="/services" element={<Services />} />
+					<Route path="portfolio" element={<Portfolio/>} />
+					<Route path="/about" element={<About />} />
 					<Route path="/*" element={<PageNotFound />} />
 					<Route path="/dashboard" element={<Dashboard />} />
 					<Route path="/" element={<FullPage />} />
