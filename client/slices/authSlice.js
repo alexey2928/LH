@@ -10,7 +10,7 @@ const setAuth = auth => ({type: SET_AUTH, auth})
 export const me = () => async dispatch => {
   const token = window.localStorage.getItem(TOKEN)
   if (token) {
-    const res = await axios.get('/auth/me', {
+    const res = await axios.get('/api/auth/me', {
       headers: {
         authorization: token
       }
@@ -19,10 +19,18 @@ export const me = () => async dispatch => {
   }
 }
 
-export const authenticate = (email, password, method) => async dispatch => {
+export const authenticateLogin = (email, password) => async dispatch => {
   try {
-    const res = await axios.post(`/auth/${method}`, {email, password})
-    //console.log(res)
+    const res = await axios.post("/api/auth/login", {email, password})
+    window.localStorage.setItem(TOKEN, res.data.token)
+    dispatch(me())
+  } catch (authError) {
+    return dispatch(setAuth({error: authError}))
+  }
+}
+export const authenticateRegister = ( firstName, lastName, email, password ) => async dispatch => {
+  try {
+    const res = await axios.post("/api/auth/register", { firstName, lastName, email, password })
     window.localStorage.setItem(TOKEN, res.data.token)
     dispatch(me())
   } catch (authError) {
@@ -42,7 +50,7 @@ export const logout = () => {
 export default function(state = {}, action) {
   switch (action.type) {
     case SET_AUTH:
-      return action.auth
+       return action.auth
     default:
       return state
   }

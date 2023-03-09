@@ -1,9 +1,9 @@
 const { db } = require("./server/db");
 const { green, red } = require("chalk");
 
-const User = require("./server/db/models/Users");
-const Service = require("./server/db/models/Services");
-const Appointment = require("./server/db/models/Appointments");
+const User = require("./server/db/models/User");
+const Service = require("./server/db/models/Service");
+const Appointment = require("./server/db/models/Appointment");
 
 const users = [
 	{

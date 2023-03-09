@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
+import { authenticateRegister } from "../slices/authSlice";
 import { addUserAsync } from "../slices/usersSlice";
 
 const RegisterForm = () => {
@@ -34,14 +35,7 @@ const RegisterForm = () => {
 			setError("Email must be filled out");
 			return;
 		}
-		dispatch(
-			addUserAsync({
-				firstName: firstName,
-				lastName: lastName,
-				email: email,
-				password: password,
-			})
-		);
+		dispatch(authenticateRegister(firstName,lastName,email,password));
 		setFirstName("");
 		setLastName("");
 		setEmail("");
