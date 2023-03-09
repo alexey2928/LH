@@ -1,17 +1,17 @@
 const db = require("./database");
-const Users = require("./models/Users");
-const Services = require("./models/Services");
-const Appointments = require("./models/Appointments");
+const User = require("./models/User");
+const Service = require("./models/Service");
+const Appointment = require("./models/Appointment");
 
-Users.hasMany(Appointments);
-Appointments.belongsTo(Users);
+User.hasMany(Appointment);
+Appointment.belongsTo(User);
 
-Appointments.belongsToMany(Services, { through: "ServicesAppointments" });
-Services.belongsToMany(Appointments, { through: "ServicesAppointments" });
+Appointment.belongsToMany(Service, { through: "ServiceAppointment" });
+Service.belongsToMany(Appointment, { through: "ServiceAppointment" });
 
 module.exports = {
 	db,
-	Users,
-	Services,
-	Appointments,
+	User,
+	Service,
+	Appointment,
 };

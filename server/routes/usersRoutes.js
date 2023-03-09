@@ -1,17 +1,18 @@
 const router = require("express").Router();
 
-const Users = require("../db/models/Users");
+const Users = require("../db/models/User");
 
-const requireToken = async (req, res, next) => {
-	try {
-		const token = req.headers.authorization;
-		const user = await Users.byToken(token);
-		req.user = user;
-		next();
-	} catch (error) {
-		next(error);
-	}
-};
+// const requireToken = async (req, res, next) => {
+// 	try {
+// 		const token = req.headers.authorization;
+// 		const user = await Users.byToken(token);
+// 		req.user = user;
+// 		next();
+// 	} catch (error) {
+// 		next(error);
+// 	}
+// };
+
 // api/users
 router.get("/", async (req, res, next) => {
 	try {
@@ -21,7 +22,7 @@ router.get("/", async (req, res, next) => {
 		next(error);
 	}
 });
-
+// api/users
 router.post("/", async (req, res, next) => {
 	try {
 		const { firstName, lastName, email, password } = req.body;
