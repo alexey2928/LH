@@ -2,22 +2,26 @@ import React from "react";
 
 import Home from "./Home";
 import Services from "./Services";
-// import Portfolio from "./Portfolio";
+import Portfolio from "./Portfolio";
 import Navbar from "./Navbar";
+import About from "./About";
 
 const FullPage = () => {
 	return (
 		<div>
 			<Navbar />
-			<section className="home">
+			<div className="home">
 				<Home />
-			</section>
-			<section className="services">
+			</div>
+			{/* <div className="services">
 				<Services />
-			</section>
-			<section className="portfolio">
-				{/* <Portfolio /> */}
-			</section>
+			</div>
+			<div className="portfolio">
+				<Portfolio />
+			</div>
+			<div className="about">
+				<About/>
+			</div> */}
 		</div>
 	);
 };
