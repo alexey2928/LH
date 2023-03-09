@@ -2,13 +2,12 @@ import React from "react";
 
 import Home from "./Home";
 import Services from "./Services";
-// import Portfolio from "./Portfolio";
-import Navbar from "./Navbar";
+import Portfolio from "./Portfolio";
+import About from "./About";
 
 const FullPage = () => {
 	return (
 		<div>
-			<Navbar />
 			<section className="home">
 				<Home />
 			</section>
@@ -16,7 +15,10 @@ const FullPage = () => {
 				<Services />
 			</section>
 			<section className="portfolio">
-				{/* <Portfolio /> */}
+				<Portfolio />
+			</section>
+			<section className="about">
+				<About/>
 			</section>
 		</div>
 	);
