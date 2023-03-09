@@ -16,6 +16,12 @@ module.exports = {
 					presets: ["@babel/preset-react", "@babel/preset-env"],
 				},
 			},
+			{
+				test: /\.(woff|woff2)$/,
+				use: {
+				  loader: 'url-loader',
+				},
+			  },
 		],
 	},
 };
