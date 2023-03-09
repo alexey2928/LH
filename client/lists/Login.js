@@ -1,96 +1,40 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import { useSelector, useDispatch } from "react-redux";
+import { authenticate } from "../slices/authSlice";
 
 function Login() {
-	const [token, setToken] = useState(localStorage.getItem("token") || "");
-	const [error, setError] = useState("");
-	const [user, setUser] = useState(localStorage.getItem("user") || "");
+	const { error } = useSelector((state) => state.auth);
 
-	const handleLogin = (token, user) => {
-		localStorage.setItem("token", token);
-		setToken(token);
-		localStorage.setItem("user", user);
-		setUser(user);
-	};
+	const dispatch = useDispatch()
 
-	const handleLogout = () => {
-		localStorage.removeItem("token");
-		setToken("");
-		localStorage.removeItem("user");
-		setUser("");
-	};
 
-	useEffect(() => {
-		const fetchProtectedData = async () => {
-			try {
-				const response = await axios.get("/api/dashboard", {
-					headers: { Authorization: `Bearer ${token}` },
-				});
-				console.log(response);
-			} catch (err) {
-				setError(err.response.data.message);
-			}
-		};
-
-		if (token && user) {
-			fetchProtectedData();
-		}
-	}, [token, user]);
+	const handleSubmit = (evt) => {
+		evt.preventDefault();
+		const method = evt.target.name;
+		const email = evt.target.email.value;
+    	const password = evt.target.password.value;
+		console.log('COMPONENT', method, email, password)
+		dispatch(authenticate(email, password, method));
+	  };
 
 	return (
-		<div>
-			{token ? (
-				<>
-					<p>{user}, You are logged in </p>
-					<button onClick={handleLogout}>Logout</button>
-					{error && <p>{error}</p>}
-				</>
-			) : (
-				<LoginForm onLogin={handleLogin} />
-			)}
-		</div>
-	);
-}
-
-function LoginForm({ onLogin }) {
-	const [email, setEmail] = useState("");
-	const [password, setPassword] = useState("");
-	const [error, setError] = useState("");
-
-	const handleSubmit = async (e) => {
-		e.preventDefault();
-
-		try {
-			const response = await axios.post("/api/login", { email, password });
-			const token = response.data.token;
-			const user = response.data.user;
-			console.log(user);
-			onLogin(token, JSON.stringify(user.fullName));
-		} catch (err) {
-			setError(err.response.data.message);
-		}
-	};
-
-	return (
-		<form onSubmit={handleSubmit}>
+		<form onSubmit={handleSubmit} name="login">
 			<div>
 				<label>Email:</label>
 				<input
 					type="text"
-					value={email}
-					onChange={(e) => setEmail(e.target.value)}
+					name="email"
 				/>
 			</div>
 			<div>
 				<label>Password:</label>
 				<input
 					type="password"
-					value={password}
-					onChange={(e) => setPassword(e.target.value)}
+					name="password"
 				/>
 			</div>
 			<button type="submit">Login</button>
-			{error && <p>{error}</p>}
+			{error && error.response && <div> {error.response.data} </div>}
 		</form>
 	);
 }

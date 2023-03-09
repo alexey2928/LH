@@ -1,6 +1,6 @@
 const router = require("express").Router();
 
-const Users = require("../db/models/Users");
+const Users = require("../db/models/User");
 
 const requireToken = async (req, res, next) => {
 	try {
