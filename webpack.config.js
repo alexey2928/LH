@@ -21,7 +21,16 @@ module.exports = {
 				use: {
 				  loader: 'url-loader',
 				},
-			  },
+			},
+			{
+				test: /\.(png|svg|jpg|jpeg|gif)$/i,
+				loader: 'file-loader',
+				options: {
+				  name: '[name].[ext]',
+				  outputPath: 'images/',
+				  publicPath: 'images/',
+				},
+			},
 		],
 	},
 };

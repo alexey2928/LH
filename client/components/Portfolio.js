@@ -1,5 +1,6 @@
 import React from 'react'
 import Carousel from 'react-bootstrap/Carousel';
+import port1 from '../../public/asset/port1.jpg'
 
 function Portfolio() {
   return (
@@ -9,6 +10,7 @@ function Portfolio() {
         <img
           className="d-block w-100" id="portfolio"
           src="https://images.unsplash.com/photo-1595784279873-62b38b5e7cd6?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=3774&q=80"
+          //src={port1}
           alt="Angela"
         />
         <Carousel.Caption>

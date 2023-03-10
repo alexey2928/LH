@@ -37,10 +37,20 @@ const User = db.define("User", {
 			notNull: { msg: "password is required" },
 		},
 	},
-
+	phoneNumber: {
+		type: Sequelize.STRING,
+		allowNull: false,
+		validate: {
+		  is: /^\+?[0-9]{10,12}$/ 
+		}
+	},
 	image: {
 		type: Sequelize.STRING,
-		defaultValue: "./public/images/defaultUserImage.png",
+		defaultValue: "https://cdn-icons-png.flaticon.com/512/1154/1154478.png?w=1480&t=st=1678406349~exp=1678406949~hmac=ae6d0951597828fa0a737afb6f495d5375f99d2cb0051e3dedc1f7753641bf0d",
+	},
+	role: {
+		type: Sequelize.ENUM("admin", "user"),
+		defaultValue: "user",
 	},
 	fullName: {
 		type: Sequelize.VIRTUAL,

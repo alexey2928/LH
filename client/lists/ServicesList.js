@@ -1,10 +1,17 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { selectServices, fetchAllServices } from "../slices/servicesSlice";
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import { Link, useNavigate } from "react-router-dom";
+
 
 const ServicesList = () => {
+	const isLoggedIn = useSelector((state) => !!state.auth.id)
 	const dispatch = useDispatch();
-
+	const navigate = useNavigate()
 	const services = useSelector(selectServices);
 
 	useEffect(() => {
@@ -14,24 +21,31 @@ const ServicesList = () => {
 	if (!services.length) return "Loading. Please wait";
 
 	return (
-		<div>
-			<h1 className="header text-center">Services</h1>
-			<div className="container-fluid">
-				<div className="row row-cols-3">
-					{services.map((service) => (
-						<div className="col" key={service.id}>
-							<div className="card-group">
-								<div className="card mb-3" style={{ width: "33rem" }}>
-									<h2 className="card-title text-center">{service.name}</h2>
-									<h4 className="card-text">${service.price}.00</h4>
-									<button>Book Service</button>
-								</div>
-							</div>
-						</div>
-					))}
-				</div>
-			</div>
-		</div>
+		<Container>
+      		<Row s={2} lg={{span:3, offset: 3 }}>
+			{services.map((service) => (
+				<Card style={{ width: '18rem' }}>
+					<Card.Body>
+						<Card.Title>{service.name}</Card.Title>
+						<Card.Img variant="top" src={service.image} />
+						<Card.Text>${service.price}.00</Card.Text>
+						{isLoggedIn ? (
+							<Button variant="primary" 
+								onClick={() => navigate("/booking")}>
+								Book
+							</Button>
+
+						) : (
+							<Link
+								to="/login">
+								Login to Book
+							</Link>
+						)}
+					</Card.Body>
+				</Card>
+			))}
+		 	</Row>
+    	</Container>
 	);
 };
 

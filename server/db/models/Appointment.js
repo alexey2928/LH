@@ -2,20 +2,23 @@ const Sequelize = require("sequelize");
 const db = require("../database");
 
 const Appointment = db.define("Appointment", {
+	name: {
+		type: Sequelize.STRING,
+	},
+	email: {
+		type: Sequelize.STRING,
+	},
+	phoneNumber: {
+		type: Sequelize.STRING,
+		validate: {
+		  is: /^\+?[0-9]{10,12}$/ 
+		}
+	},
 	start_time: {
 		type: Sequelize.DATE,
-		allowNull: false,
 	},
-	end_time: {
-		type: Sequelize.DATE,
-		allowNull: false,
-	},
-	title: {
-		type: Sequelize.STRING,
-		allowNull: false,
-	},
-	description: {
-		type: Sequelize.STRING,
+	serviceInfo: {
+		type: Sequelize.TEXT,
 	},
 });
 
