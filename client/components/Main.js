@@ -11,6 +11,10 @@ import { me } from "../slices/authSlice";
 import Portfolio from "./Portfolio";
 import About from "./About";
 import Services from "./Services";
+import BookingList from "../lists/bookingList";
+import MyComponent from "./Date";
+import BookingForm from "../lists/BookingForm";
+import NewBooking from "../lists/newBooking";
 
 const Main = () => {
 	const isLoggedIn = useSelector((state) => !!state.auth.id)
@@ -32,7 +36,10 @@ const Main = () => {
 					<Route path="/about" element={<About />} />
 					<Route path="/*" element={<PageNotFound />} />
 					<Route path="/dashboard" element={<Dashboard />} />
-					<Route path="/" element={<FullPage />} />
+					<Route path="/" element={<FullPage />} />	
+					<Route path="/booking" element={<BookingForm />} />	
+					<Route path="/newbooking" element={< NewBooking />} />	
+					
 				</Routes>
 				) : (
 				<Routes>

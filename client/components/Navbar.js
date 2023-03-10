@@ -1,15 +1,18 @@
 import React from "react";
-import { useSelector} from "react-redux";
+import { useDispatch, useSelector} from "react-redux";
 
+import { logout } from "../slices/authSlice";
 
 
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
+import { Button } from "react-bootstrap";
 
 
 function NavBar() {
 	const isLoggedIn = useSelector((state) => !!state.auth.id)
+  const dispatch = useDispatch()
 
   return (
     <Navbar bg="light" expand="xxl" sticky="top">
@@ -20,6 +23,7 @@ function NavBar() {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="me-auto">
             <Nav.Link href="/dashboard">Dashboard</Nav.Link>
+            <Button href="/" onClick={() => dispatch(logout())}>Log Out</Button>
           </Nav>
           <Nav justify variant="tabs" className="justify-content-end" activeKey="/home">
             <Nav.Link href="/services">Services</Nav.Link>

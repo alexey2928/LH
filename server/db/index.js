@@ -6,8 +6,8 @@ const Appointment = require("./models/Appointment");
 User.hasMany(Appointment);
 Appointment.belongsTo(User);
 
-Appointment.belongsToMany(Service, { through: "ServiceAppointment" });
-Service.belongsToMany(Appointment, { through: "ServiceAppointment" });
+Service.hasMany(Appointment);
+Appointment.belongsTo(Service);
 
 module.exports = {
 	db,

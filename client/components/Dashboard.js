@@ -1,18 +1,13 @@
 import React from "react";
-import { logout } from "../slices/authSlice";
-import { useDispatch, useSelector } from "react-redux";
-
-import Button from "react-bootstrap/Button";
+import { useSelector } from "react-redux";
+import UserProfile from "./UserProfile";
+import AdminProfile from "./AdminProfile";
 
 const Dashboard = () => {
-	const { firstName, } = useSelector((state) => state.auth);
-	const dispatch = useDispatch()
+	const { role } = useSelector((state) => state.auth);
 	return (
-	<div>
-		<h1>Hello, {firstName} </h1>
-		<Button href="/" onClick={() => dispatch(logout())}>
-              Log Out
-        </Button>
+	<div>  
+        {role === "admin" ? <AdminProfile /> : <UserProfile />}
 	</div>)
 };
 
