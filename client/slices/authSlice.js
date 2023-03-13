@@ -28,9 +28,9 @@ export const authenticateLogin = (email, password) => async dispatch => {
     return dispatch(setAuth({error: authError}))
   }
 }
-export const authenticateRegister = ( firstName, lastName, email, password ) => async dispatch => {
+export const authenticateRegister = ( firstName, lastName, email,phoneNumber, password ) => async dispatch => {
   try {
-    const res = await axios.post("/api/auth/register", { firstName, lastName, email, password })
+    const res = await axios.post("/api/auth/register", { firstName, lastName, email, phoneNumber, password })
     window.localStorage.setItem(TOKEN, res.data.token)
     dispatch(me())
   } catch (authError) {

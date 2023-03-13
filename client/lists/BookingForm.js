@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Form, Button, Container } from 'react-bootstrap';
+import { Form, Button, Container, Card } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
 import { addAppAsync } from '../slices/bookingSlice';
 import { selectServices, fetchAllServices } from '../slices/servicesSlice';
 import { fetchOneUserAsync, selectUser } from '../slices/usersSlice';
@@ -12,7 +13,7 @@ function BookingForm() {
     const [start_time, setStartTime] = useState('');
     const [ServiceId, setServiceId] = useState('');
 
-
+    const navigate = useNavigate()
     const dispatch = useDispatch()
     const services = useSelector(selectServices)
 
@@ -37,6 +38,7 @@ function BookingForm() {
     const handleSubmit = (e) => {
         e.preventDefault();
 		dispatch(addAppAsync({UserId:user.id, ServiceId:ServiceId, name:user.fullName, email:user.email, phoneNumber:user.phoneNumber, start_time:start_time}));
+        navigate("/dashboard")
 		setName("");
 		setEmail("");
         setPhoneNumber("")
@@ -48,6 +50,10 @@ function BookingForm() {
 
     return (
         <Container>
+            <div className="d-flex align-items-center justify-content-center">
+		    <Card style={{width: "50%"}} id="loginRegister">
+			<Card.Body>
+				<Card.Title className="title">Register</Card.Title>
         <Form onSubmit={handleSubmit} size="sm">
         <Form.Group controlId="name">
             <Form.Label>Name</Form.Label>
@@ -74,8 +80,12 @@ function BookingForm() {
             ))}
             </Form.Control>
         </Form.Group>
-        <Button variant="primary" type="submit" >Book Now</Button>
+        <br></br>
+        <Button type="submit" onClick={handleSubmit} >Book Now</Button>
         </Form>
+        </Card.Body>
+		</Card>
+		</div>
         </Container>
     );
 }

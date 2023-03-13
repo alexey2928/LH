@@ -7,6 +7,7 @@ import history from "../history"
 import Main from "./components/Main";
 import Navbar from "./components/Navbar"
 import { BrowserRouter as Router } from "react-router-dom";
+import Footer from "./components/Footer";
 
 const root = createRoot(document.getElementById("main"));
 

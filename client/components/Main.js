@@ -15,6 +15,8 @@ import BookingList from "../lists/bookingList";
 import MyComponent from "./Date";
 import BookingForm from "../lists/BookingForm";
 import NewBooking from "../lists/newBooking";
+import UpdateUser from "../lists/updateUserForm";
+import ChangePass from "../lists/changePassForm";
 
 const Main = () => {
 	const isLoggedIn = useSelector((state) => !!state.auth.id)
@@ -24,7 +26,6 @@ const Main = () => {
 	useEffect(() => {
 		dispatch(me())
 	  }, [])
-	console.log(isLoggedIn)
 	return (
 		<div>
 			{isLoggedIn ? (
@@ -39,7 +40,8 @@ const Main = () => {
 					<Route path="/" element={<FullPage />} />	
 					<Route path="/booking" element={<BookingForm />} />	
 					<Route path="/newbooking" element={< NewBooking />} />	
-					
+					<Route path="/update" element={< UpdateUser />} />	
+					<Route path="/change_password" element={< ChangePass />} />	
 				</Routes>
 				) : (
 				<Routes>
@@ -49,6 +51,7 @@ const Main = () => {
 					<Route path="/services" element={<Services />} />
 					<Route path="portfolio" element={<Portfolio/>} />
 					<Route path="/about" element={<About />} />
+					<Route path="/*" element={<PageNotFound />} />
 				</Routes>
 			)}
 		</div>
