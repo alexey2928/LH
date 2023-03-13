@@ -5,7 +5,7 @@ import React from "react";
 const PageNotFound = () => {
   const location = useLocation();
   return (
-    <div>
+    <div id="notFound">
       <h1>
         Ah! Unfortunately, the extension {location.pathname} doesn't lead
         anywhere.

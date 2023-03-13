@@ -14,11 +14,12 @@ router.post("/login", async (req, res, next) => {
   // POST api/auth
   router.post("/register", async (req, res, next) => {
 	try {
-	  const { firstName, lastName, email, password } = req.body;
+	  const { firstName, lastName, email, phoneNumber, password } = req.body;
 	  const user = await User.create({
 		firstName: firstName,
 		lastName: lastName,
 		email: email,
+		phoneNumber : phoneNumber,
 		password: password,
 	});
 	  res.send({ token: await user.generateToken() });

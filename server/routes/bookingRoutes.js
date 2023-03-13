@@ -35,7 +35,6 @@ router.get('/:id', async (req, res, next) => {
 router.post('/', async (req, res, next) => {
 	try {
 	  const {UserId, ServiceId, name, email, phoneNumber, start_time} = req.body	
-	  console.log(req.body)	
 	  const app = await Appointment.create({
 		UserId : UserId,
 		ServiceId : ServiceId,
